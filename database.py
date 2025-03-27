@@ -14,5 +14,5 @@ os.environ["GOOGLE_API_KEY"] = "AIzaSyC9j5KaPVcanw9nvPAfKfORBqsCzBjx37I"
 embedding_model = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 db = Chroma(collection_name="vector_database",
             embedding_function=embedding_model,
-            persist_directory="C:\Users\vempa\OneDrive\Desktop\Innomatix lab\Internship\Task - 8\github_Purpose\chroma_db_")
+            persist_directory=".\chroma_db_")
 db.add_documents(chunks[:20000])
