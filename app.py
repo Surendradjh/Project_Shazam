@@ -2,6 +2,7 @@ import streamlit as st
 import assemblyai as aai
 import sys
 import pysqlite3
+import os
 sys.modules['sqlite3'] = pysqlite3
 from database import db
 from model import prompt_template,model
