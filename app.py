@@ -23,7 +23,7 @@ else:
     try:
         # st.info("Audio file is stored in the background. You can proceed with further processing.")
         voice _api =  os.environ.get("voice_api")
-        aai.settings.api_key = voice_api#"ab1cac1fd1aa42ccaaf517ae98030f8d"
+        aai.settings.api_key = voice_api
         transcriber = aai.Transcriber()
         transcript = transcriber.transcribe(audio_file)
         # st.write(transcript.text)
