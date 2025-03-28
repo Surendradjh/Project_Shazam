@@ -20,18 +20,24 @@ if "audio_file" not in st.session_state:
     st.info("Please upload an audio file to store it in the background.")
 else:
     # st.info("Audio file is stored in the background. You can proceed with further processing.")
-    aai.settings.api_key = "ab1cac1fd1aa42ccaaf517ae98030f8d"
-    transcriber = aai.Transcriber()
-    transcript = transcriber.transcribe(audio_file)
-    # st.write(transcript.text)
-    query = transcript.text
-    
-    # query = 'Who is Hakeem ?'#Muhammad?'
-    st.write(query)
-    docs_chroma = db.similarity_search_with_score(query, k=3)
-    context_text = "\n\n".join([doc.page_content for doc,_score in docs_chroma])
-    # st.write(context_text)
-    prompt = prompt_template.format(context=context_text, question=query)
-    response_text = model.invoke(prompt)
+    try:
+        # st.info("Audio file is stored in the background. You can proceed with further processing.")
+        voice _api =  os.environ.get("voice_api")
+        aai.settings.api_key = voice_api#"ab1cac1fd1aa42ccaaf517ae98030f8d"
+        transcriber = aai.Transcriber()
+        transcript = transcriber.transcribe(audio_file)
+        # st.write(transcript.text)
+        query = transcript.text
 
-    st.write(response_text.content)
+        # query = 'Who is Hakeem ?'#Muhammad?'
+        st.write(query)
+        docs_chroma = db.similarity_search_with_score(query, k=3)
+        context_text = "\n\n".join([doc.page_content for doc,_score in docs_chroma])
+        # st.write(context_text)
+        prompt = prompt_template.format(context=context_text, question=query)
+        response_text = model.invoke(prompt)
+
+        st.write(response_text.content)
+    except Exception as e:
+        st.write("file is not uploaded")
+    
